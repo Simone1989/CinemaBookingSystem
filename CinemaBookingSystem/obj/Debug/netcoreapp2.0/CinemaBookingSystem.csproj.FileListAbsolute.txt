@@ -9,3 +9,14 @@ D:\Dokument\Repos laptop\Labbar web\CinemaBookingSystem\CinemaBookingSystem\obj\
 D:\Dokument\Repos laptop\Labbar web\CinemaBookingSystem\CinemaBookingSystem\obj\Debug\netcoreapp2.0\CinemaBookingSystem.AssemblyInfo.cs
 D:\Dokument\Repos laptop\Labbar web\CinemaBookingSystem\CinemaBookingSystem\obj\Debug\netcoreapp2.0\CinemaBookingSystem.dll
 D:\Dokument\Repos laptop\Labbar web\CinemaBookingSystem\CinemaBookingSystem\obj\Debug\netcoreapp2.0\CinemaBookingSystem.pdb
+E:\Mina dokument\MON STUFF\Repos\Webbapplikation\MVC\CinemaBookingSystem\CinemaBookingSystem\bin\Debug\netcoreapp2.0\CinemaBookingSystem.deps.json
+E:\Mina dokument\MON STUFF\Repos\Webbapplikation\MVC\CinemaBookingSystem\CinemaBookingSystem\bin\Debug\netcoreapp2.0\CinemaBookingSystem.runtimeconfig.json
+E:\Mina dokument\MON STUFF\Repos\Webbapplikation\MVC\CinemaBookingSystem\CinemaBookingSystem\bin\Debug\netcoreapp2.0\CinemaBookingSystem.runtimeconfig.dev.json
+E:\Mina dokument\MON STUFF\Repos\Webbapplikation\MVC\CinemaBookingSystem\CinemaBookingSystem\bin\Debug\netcoreapp2.0\CinemaBookingSystem.dll
+E:\Mina dokument\MON STUFF\Repos\Webbapplikation\MVC\CinemaBookingSystem\CinemaBookingSystem\bin\Debug\netcoreapp2.0\CinemaBookingSystem.pdb
+E:\Mina dokument\MON STUFF\Repos\Webbapplikation\MVC\CinemaBookingSystem\CinemaBookingSystem\obj\Debug\netcoreapp2.0\CinemaBookingSystem.csprojResolveAssemblyReference.cache
+E:\Mina dokument\MON STUFF\Repos\Webbapplikation\MVC\CinemaBookingSystem\CinemaBookingSystem\obj\Debug\netcoreapp2.0\CinemaBookingSystem.csproj.CoreCompileInputs.cache
+E:\Mina dokument\MON STUFF\Repos\Webbapplikation\MVC\CinemaBookingSystem\CinemaBookingSystem\obj\Debug\netcoreapp2.0\CinemaBookingSystem.AssemblyInfoInputs.cache
+E:\Mina dokument\MON STUFF\Repos\Webbapplikation\MVC\CinemaBookingSystem\CinemaBookingSystem\obj\Debug\netcoreapp2.0\CinemaBookingSystem.AssemblyInfo.cs
+E:\Mina dokument\MON STUFF\Repos\Webbapplikation\MVC\CinemaBookingSystem\CinemaBookingSystem\obj\Debug\netcoreapp2.0\CinemaBookingSystem.dll
+E:\Mina dokument\MON STUFF\Repos\Webbapplikation\MVC\CinemaBookingSystem\CinemaBookingSystem\obj\Debug\netcoreapp2.0\CinemaBookingSystem.pdb

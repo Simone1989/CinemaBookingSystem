@@ -11,9 +11,10 @@ using System;
 namespace CinemaBookingSystem.Migrations
 {
     [DbContext(typeof(CinemaContext))]
-    partial class CinemaContextModelSnapshot : ModelSnapshot
+    [Migration("20180321102346_AddedFluentAPI")]
+    partial class AddedFluentAPI
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,9 +27,6 @@ namespace CinemaBookingSystem.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("BookedSeats");
-
-                    b.Property<string>("Name")
-                        .IsRequired();
 
                     b.Property<int>("NumberOfSeats");
 

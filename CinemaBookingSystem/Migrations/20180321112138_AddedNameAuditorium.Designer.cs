@@ -11,9 +11,10 @@ using System;
 namespace CinemaBookingSystem.Migrations
 {
     [DbContext(typeof(CinemaContext))]
-    partial class CinemaContextModelSnapshot : ModelSnapshot
+    [Migration("20180321112138_AddedNameAuditorium")]
+    partial class AddedNameAuditorium
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

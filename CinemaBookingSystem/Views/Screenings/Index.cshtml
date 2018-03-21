@@ -1,33 +1,46 @@
 ﻿@model IEnumerable<CinemaBookingSystem.Models.Screening>
 
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Movies";
 }
 
-<h2>Index</h2>
+<h2>Movies</h2>
 
 <table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Time)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Time)
-            </td>
-        </tr>
-}
-    </tbody>
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Title)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Time)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Auditorium)
+			</th>
+			<th>
+				Seats left
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Title)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Time)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Auditorium.Name)
+			</td>
+			<td>Lediga/totalen</td>
+			<td>
+				<a asp-action="Details" asp-route-id="@item.Id">Buy tickets</a>
+			</td>
+		</tr>
+		}
+	</tbody>
 </table>
