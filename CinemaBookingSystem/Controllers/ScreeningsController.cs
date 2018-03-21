@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CinemaBookingSystem.Data;
+using System.Linq;
 
 namespace CinemaBookingSystem.Controllers
 {
@@ -15,12 +16,42 @@ namespace CinemaBookingSystem.Controllers
         }
 
         // GET: Screenings
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
+            ViewData["TimeSortParm"] = string.IsNullOrEmpty(sortOrder) ? "time_desc" : "";
+            ViewData["SeatsSortParm"] = sortOrder == "Seats" ? "seats_desc" : "Seats";
+            ViewData["NameSortParm"] = sortOrder == "Name" ? "name_desc" : "Name";
+            var screeningSort = from s in _context.Screenings
+                                select s;
+
+            switch (sortOrder)
+            {
+                case "Name":
+                    screeningSort = screeningSort.OrderBy(s => s.Title);
+                    break;
+                case "name_desc":
+                    screeningSort = screeningSort.OrderByDescending(s => s.Title);
+                    break;
+                case "time_desc":
+                    screeningSort = screeningSort.OrderByDescending(s => s.Time);
+                    break;
+                case "Seats":
+                    screeningSort = screeningSort.OrderBy(s => s.Auditorium.BookedSeats);
+                    break;
+                case "seats_desc":
+                    screeningSort = screeningSort.OrderByDescending(s => s.Auditorium.BookedSeats);
+                    break;
+                default:
+                    screeningSort = screeningSort.OrderBy(s => s.Time);
+                    break;
+            }
+
+            
             var screenings = _context.Screenings
                 .Include(s => s.Auditorium)
                 .AsNoTracking();
-            return View(await screenings.ToListAsync());
+            // Hitta ett sätt att returna både screenings och screeningSort. 
+            return View(await screeningSort.AsNoTracking().ToListAsync());
         }
 
         // GET: Screenings/Details/5

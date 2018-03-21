@@ -16,8 +16,8 @@ namespace CinemaBookingSystem.Data
             }
             else
             {
-                var audi1 = new Auditorium { NumberOfSeats = 50, BookedSeats = 0, Name = "Keaton Theatre"};
-                var audi2 = new Auditorium { NumberOfSeats = 100, BookedSeats = 0, Name = "Burton Hall"};
+                var audi1 = new Auditorium { NumberOfSeats = 50, BookedSeats = 34, Name = "Keaton Theatre"};
+                var audi2 = new Auditorium { NumberOfSeats = 100, BookedSeats = 61, Name = "Burton Hall"};
                 context.Auditoriums.AddRange(
                     audi1,
                     audi2

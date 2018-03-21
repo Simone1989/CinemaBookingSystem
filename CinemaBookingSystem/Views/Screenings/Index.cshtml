@@ -10,16 +10,16 @@
 	<thead>
 		<tr>
 			<th>
-				@Html.DisplayNameFor(model => model.Title)
+				<a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Title)</a>
 			</th>
 			<th>
-				Start time
+				<a asp-action="Index" asp-route-sortOrder="@ViewData["TimeSortParm"]">@Html.DisplayNameFor(model => model.Time)</a>
 			</th>
 			<th>
 				@Html.DisplayNameFor(model => model.Auditorium)
 			</th>
 			<th>
-				Seats left
+				<a asp-action="Index" asp-route-sortOrder="@ViewData["SeatsSortParm"]">@Html.DisplayNameFor(model => model.Auditorium.BookedSeats)</a>
 			</th>
 		</tr>
 	</thead>
@@ -36,7 +36,9 @@
 			<td>
 				@Html.DisplayFor(modelItem => item.Auditorium.Name)
 			</td>
-			<td>Lediga/totalen</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Auditorium.BookedSeats)
+			</td>
 			<td>
 				<a asp-action="Details" asp-route-id="@item.Id">Buy tickets</a>
 			</td>
