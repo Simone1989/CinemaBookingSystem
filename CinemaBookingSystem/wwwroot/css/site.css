@@ -2,6 +2,7 @@
 	padding-top: 50px;
 	padding-bottom: 20px;
 }
+
 .smallImage img {
 	width: 100px;
 }
@@ -29,11 +30,42 @@
 	margin: 15px;
 }
 
+.bookTicketImg {
+	float: left;
+}
+
+.bookTicketImg img {
+	width: 200px;
+}
+
+.detailsText {
+	position: relative;
+	left: 20px;
+}
+
+.detailsLinks {
+	float: left;
+	position: relative;
+	right: 200px;
+	top: 150px;
+}
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
 	/* Hide captions */
 	.carousel-caption {
 		display: none;
+	}
+
+	.detailsText {
+		left: 5px;
+		float: left;
+		clear: left;
+	}
+
+	.detailsLinks {
+		position: relative;
+		left: 5px;
+		top: 10px;
 	}
 }
