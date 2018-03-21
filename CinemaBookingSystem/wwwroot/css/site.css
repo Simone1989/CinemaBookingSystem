@@ -46,8 +46,13 @@
 .detailsLinks {
 	float: left;
 	position: relative;
-	right: 200px;
-	top: 150px;
+}
+
+.details {
+	background-color: lightgray;
+	padding: 20px;
+	height: 350px;
+	margin-right: 10px;
 }
 
 /* Hide/rearrange for smaller screens */
@@ -57,15 +62,25 @@
 		display: none;
 	}
 
+	.detailsLinks {
+		position: relative;
+		left: 5px;
+		top: 0px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.details {
+		background-color: lightgray;
+		padding: 20px;
+		height: 600px;
+		margin-right: 10px;
+	}
 	.detailsText {
 		left: 5px;
 		float: left;
 		clear: left;
 	}
-
-	.detailsLinks {
-		position: relative;
-		left: 5px;
-		top: 10px;
-	}
 }
+
+
