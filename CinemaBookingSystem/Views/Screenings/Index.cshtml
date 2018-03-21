@@ -10,6 +10,7 @@
 <table class="table">
 	<thead>
 		<tr>
+			<th></th>
 			<th>
 				<a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Title)</a>
 			</th>
@@ -29,44 +30,50 @@
 		{
 			if (item.BookedSeats >= item.Auditorium.NumberOfSeats)
 			{
-		<tr class="danger">
-			<td>
-				@Html.DisplayFor(modelItem => item.Title)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Time)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Auditorium.Name)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.BookedSeats) / @Html.DisplayFor(modelItem => item.Auditorium.NumberOfSeats)
-			</td>
-			<td>
-				Buy tickets
-			</td>
-		</tr>
+				<tr class="danger">
+					<td class="smallImage">
+						<img src="@item.ImageUrl" alt="Movie"/>
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Title)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Time)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Auditorium.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.BookedSeats) / @Html.DisplayFor(modelItem => item.Auditorium.NumberOfSeats)
+					</td>
+					<td>
+						Buy tickets
+					</td>
+				</tr>
 			}
 			else
 			{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.Title)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Time)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Auditorium.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.BookedSeats) / @Html.DisplayFor(modelItem => item.Auditorium.NumberOfSeats)
+				<tr>
+					<td class="smallImage">
+						<img src="@item.ImageUrl" alt="Movie"/>
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Title)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Time)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Auditorium.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.BookedSeats) / @Html.DisplayFor(modelItem => item.Auditorium.NumberOfSeats)
 
-				</td>
-				<td>
-					<a asp-action="Details" asp-route-id="@item.Id">Buy tickets</a>
-				</td>
-			</tr>
+					</td>
+					<td>
+						<a asp-action="Details" asp-route-id="@item.Id">Buy tickets</a>
+					</td>
+				</tr>
 			}
 		}
 	</tbody>
