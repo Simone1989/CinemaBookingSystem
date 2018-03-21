@@ -15,6 +15,8 @@ namespace CinemaBookingSystem.Models
         [Required]
         [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Time { get; set; }
+        [StringLength(400)]
+        public string Description { get; set; }
 
         // Nav
         public Auditorium Auditorium { get; set; }

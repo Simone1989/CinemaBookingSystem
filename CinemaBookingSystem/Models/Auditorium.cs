@@ -10,6 +10,7 @@ namespace CinemaBookingSystem.Models
     {
         public int Id { get; set; }
         [Required]
+        [StringLength(250)]
         public string Name { get; set; }
         [Required]
         public int NumberOfSeats { get; set; }
