@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CinemaBookingSystem.Data;
-using CinemaBookingSystem.Models;
 
 namespace CinemaBookingSystem.Controllers
 {
@@ -22,7 +17,10 @@ namespace CinemaBookingSystem.Controllers
         // GET: Screenings
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Screenings.ToListAsync());
+            var screenings = _context.Screenings
+                .Include(s => s.Auditorium)
+                .AsNoTracking();
+            return View(await screenings.ToListAsync());
         }
 
         // GET: Screenings/Details/5
