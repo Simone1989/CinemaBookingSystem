@@ -16,8 +16,8 @@ namespace CinemaBookingSystem.Data
             }
             else
             {
-                var audi1 = new Auditorium { NumberOfSeats = 50, BookedSeats = 34, Name = "Keaton Theatre"};
-                var audi2 = new Auditorium { NumberOfSeats = 100, BookedSeats = 61, Name = "Burton Hall"};
+                var audi1 = new Auditorium { NumberOfSeats = 50, Name = "Keaton Theatre"};
+                var audi2 = new Auditorium { NumberOfSeats = 100, Name = "Burton Hall"};
                 context.Auditoriums.AddRange(
                     audi1,
                     audi2
@@ -28,6 +28,7 @@ namespace CinemaBookingSystem.Data
                 {
                     Title = "Lord of the Rings: Fellowship of the Ring",
                     Time = DateTime.Parse("2006-03-03"),
+                    BookedSeats = 34,
                     Description = "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
                     Auditorium =  audi1
                 };
@@ -35,6 +36,7 @@ namespace CinemaBookingSystem.Data
                 {
                     Title = "Bill & Ted's Excellent Adventure",
                     Time = DateTime.Parse("2006-03-03"),
+                    BookedSeats = 100,
                     Description = "Two seemingly dumb teens set off on a quest to prepare the ultimate historical presentation with the help of a time machine.",
                     Auditorium = audi2
                 };
@@ -42,6 +44,7 @@ namespace CinemaBookingSystem.Data
                 {
                     Title = "Mad Max: Fury Road",
                     Time = DateTime.Parse("2006-03-03"),
+                    BookedSeats = 22,
                     Description = "A woman rebels against a tyrannical ruler in postapocalyptic Australia in search for her home-land with the help of a group of female prisoners, a psychotic worshipper, and a drifter named Max.",
                     Auditorium = audi1
                 };

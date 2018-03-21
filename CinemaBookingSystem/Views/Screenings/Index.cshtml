@@ -4,6 +4,7 @@
 	ViewData["Title"] = "Movies";
 }
 
+
 <h2>Movies</h2>
 
 <table class="table">
@@ -19,14 +20,16 @@
 				@Html.DisplayNameFor(model => model.Auditorium)
 			</th>
 			<th>
-				<a asp-action="Index" asp-route-sortOrder="@ViewData["SeatsSortParm"]">@Html.DisplayNameFor(model => model.Auditorium.BookedSeats)</a>
+				<a asp-action="Index" asp-route-sortOrder="@ViewData["SeatsSortParm"]">Tickets bought</a>
 			</th>
 		</tr>
 	</thead>
 	<tbody>
 		@foreach (var item in Model)
 		{
-		<tr>
+			if (item.BookedSeats >= item.Auditorium.NumberOfSeats)
+			{
+		<tr class="danger">
 			<td>
 				@Html.DisplayFor(modelItem => item.Title)
 			</td>
@@ -37,12 +40,34 @@
 				@Html.DisplayFor(modelItem => item.Auditorium.Name)
 			</td>
 			<td>
-				@Html.DisplayFor(modelItem => item.Auditorium.BookedSeats)
+				@Html.DisplayFor(modelItem => item.BookedSeats) / @Html.DisplayFor(modelItem => item.Auditorium.NumberOfSeats)
 			</td>
 			<td>
-				<a asp-action="Details" asp-route-id="@item.Id">Buy tickets</a>
+				Buy tickets
 			</td>
 		</tr>
+			}
+			else
+			{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Title)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Time)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Auditorium.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.BookedSeats) / @Html.DisplayFor(modelItem => item.Auditorium.NumberOfSeats)
+
+				</td>
+				<td>
+					<a asp-action="Details" asp-route-id="@item.Id">Buy tickets</a>
+				</td>
+			</tr>
+			}
 		}
 	</tbody>
 </table>

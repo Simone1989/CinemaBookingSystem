@@ -36,14 +36,14 @@ namespace CinemaBookingSystem.Controllers
                     screeningSort = screeningSort.OrderByDescending(s => s.Time);
                     break;
                 case "Seats":
-                    screeningSort = screeningSort.OrderBy(s => s.Auditorium.BookedSeats);
+                    screeningSort = screeningSort.OrderBy(s => s.BookedSeats);
                     break;
                 case "seats_desc":
-                    screeningSort = screeningSort.OrderByDescending(s => s.Auditorium.BookedSeats);
+                    screeningSort = screeningSort.OrderByDescending(s => s.BookedSeats);
                     break;
                 default:
                     screeningSort = screeningSort.OrderBy(s => s.Time);
-                    break;
+                    break; 
             }
 
             
@@ -51,7 +51,7 @@ namespace CinemaBookingSystem.Controllers
                 .Include(s => s.Auditorium)
                 .AsNoTracking();
             // Hitta ett sätt att returna både screenings och screeningSort. 
-            return View(await screeningSort.AsNoTracking().ToListAsync());
+            return View(await screenings.ToListAsync());
         }
 
         // GET: Screenings/Details/5
