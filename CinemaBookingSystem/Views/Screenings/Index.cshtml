@@ -1,9 +1,9 @@
-﻿@model IEnumerable<CinemaBookingSystem.Models.Screening>
+﻿@model IEnumerable<CinemaBookingSystem.Models.Screening> 
+@*Byta ut mot modelview*@
 
 @{
 	ViewData["Title"] = "Movies";
 }
-
 
 <h2>Movies</h2>
 
@@ -15,24 +15,27 @@
 				<a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Title)</a>
 			</th>
 			<th>
-				<a asp-action="Index" asp-route-sortOrder="@ViewData["TimeSortParm"]">@Html.DisplayNameFor(model => model.Time)</a>
+				<a asp-action="Index" asp-route-sortOrder="@ViewData["TimeSortParm"]">Start</a>
 			</th>
 			<th>
 				@Html.DisplayNameFor(model => model.Auditorium)
 			</th>
 			<th>
-				<a asp-action="Index" asp-route-sortOrder="@ViewData["SeatsSortParm"]">Seats booked</a>
+				<a asp-action="Index" asp-route-sortOrder="@ViewData["SeatsSortParm"]">Seats left</a>
 			</th>
 		</tr>
 	</thead>
 	<tbody>
+
 		@foreach (var item in Model)
 		{
+			var seatsLeft = item.Auditorium.NumberOfSeats - item.BookedSeats;
+
 			if (item.BookedSeats >= item.Auditorium.NumberOfSeats)
 			{
 				<tr class="danger">
 					<td class="smallImage">
-						<img src="@item.ImageUrl" alt="Movie"/>
+						<img src="@item.ImageUrl" alt="Movie" />
 					</td>
 					<td>
 						@Html.DisplayFor(modelItem => item.Title)
@@ -44,7 +47,7 @@
 						@Html.DisplayFor(modelItem => item.Auditorium.Name)
 					</td>
 					<td>
-						@Html.DisplayFor(modelItem => item.BookedSeats) / @Html.DisplayFor(modelItem => item.Auditorium.NumberOfSeats)
+						@seatsLeft / @Html.DisplayFor(modelItem => item.Auditorium.NumberOfSeats)
 					</td>
 					<td>
 						Buy tickets
@@ -55,7 +58,7 @@
 			{
 				<tr>
 					<td class="smallImage">
-						<img src="@item.ImageUrl" alt="Movie"/>
+						<img src="@item.ImageUrl" alt="Movie" />
 					</td>
 					<td>
 						@Html.DisplayFor(modelItem => item.Title)

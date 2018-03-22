@@ -46,7 +46,7 @@ namespace CinemaBookingSystem.Controllers
                     break; 
             }
 
-            
+            // För att ta med 
             var screenings = _context.Screenings
                 .Include(s => s.Auditorium)
                 .AsNoTracking();

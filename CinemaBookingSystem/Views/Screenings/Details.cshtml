@@ -29,8 +29,16 @@
 			</dt>
 			<dd>
 				@Html.DisplayFor(model => model.Description)
+				<hr />
 			</dd>
 		</dl>
+		<div>
+			<p>Choose tickets:</p>
+			<form action="/action_page.php">
+				<input type="number" name="quantity" min="1" max="12">
+				<input type="submit" value="Buy">
+			</form>
+		</div>
 	</div>
 </div>
 
@@ -38,4 +46,3 @@
 <div class="detailsLinks">
     <a asp-action="Index">Back to Movies</a>
 </div>
-<hr />
