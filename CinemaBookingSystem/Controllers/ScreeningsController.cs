@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CinemaBookingSystem.Data;
 using System.Linq;
+using CinemaBookingSystem.Models.CinemaViewModel;
+using System.Collections.Generic;
 
 namespace CinemaBookingSystem.Controllers
 {
@@ -18,10 +20,11 @@ namespace CinemaBookingSystem.Controllers
         // GET: Screenings
         public async Task<IActionResult> Index(string sortOrder)
         {
+            // Sorterig i screeninglistan
             ViewData["TimeSortParm"] = string.IsNullOrEmpty(sortOrder) ? "time_desc" : "";
             ViewData["SeatsSortParm"] = sortOrder == "Seats" ? "seats_desc" : "Seats";
             ViewData["NameSortParm"] = sortOrder == "Name" ? "name_desc" : "Name";
-            var screeningSort = from s in _context.Screenings
+            var screeningSort = from s in _context.Screenings.Include(s => s.Auditorium)
                                 select s;
 
             switch (sortOrder)
@@ -46,12 +49,18 @@ namespace CinemaBookingSystem.Controllers
                     break; 
             }
 
-            // För att ta med 
-            var screenings = _context.Screenings
-                .Include(s => s.Auditorium)
-                .AsNoTracking();
+            //ScreeningAuditoriumVM screenVM =  new ScreeningAuditoriumVM();
+            //screenVM.Screenings = _context.Screenings.ToList();
+            //screenVM.Auditoriums = 
+
+            // För att ta med info från både screening och auditorium i listan
+            //var screenings = _context.Screenings
+            //    .Include(s => s.Auditorium)
+            //    .AsNoTracking();
+
             // Hitta ett sätt att returna både screenings och screeningSort. 
-            return View(await screenings.ToListAsync());
+            /*await screeningSort.AsNoTracking().ToListAsync()*/
+            return View(await screeningSort.AsNoTracking().ToListAsync());
         }
 
         // GET: Screenings/Details/5

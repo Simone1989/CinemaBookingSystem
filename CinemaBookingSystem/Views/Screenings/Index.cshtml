@@ -1,5 +1,4 @@
-﻿@model IEnumerable<CinemaBookingSystem.Models.Screening> 
-@*Byta ut mot modelview*@
+﻿@model IEnumerable<CinemaBookingSystem.Models.Screening>
 
 @{
 	ViewData["Title"] = "Movies";
@@ -21,7 +20,7 @@
 				@Html.DisplayNameFor(model => model.Auditorium)
 			</th>
 			<th>
-				<a asp-action="Index" asp-route-sortOrder="@ViewData["SeatsSortParm"]">Seats left</a>
+				<a asp-action="Index" asp-route-sortOrder="@ViewData["SeatsSortParm"]">Booked seats</a>
 			</th>
 		</tr>
 	</thead>
@@ -29,7 +28,7 @@
 
 		@foreach (var item in Model)
 		{
-			var seatsLeft = item.Auditorium.NumberOfSeats - item.BookedSeats;
+			// var seatsLeft = item.Auditorium.NumberOfSeats - item.BookedSeats;
 
 			if (item.BookedSeats >= item.Auditorium.NumberOfSeats)
 			{
@@ -47,7 +46,7 @@
 						@Html.DisplayFor(modelItem => item.Auditorium.Name)
 					</td>
 					<td>
-						@seatsLeft / @Html.DisplayFor(modelItem => item.Auditorium.NumberOfSeats)
+						@Html.DisplayFor(modelItem => item.BookedSeats) / @Html.DisplayFor(modelItem => item.Auditorium.NumberOfSeats)
 					</td>
 					<td>
 						Buy tickets
