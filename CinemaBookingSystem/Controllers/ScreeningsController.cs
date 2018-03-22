@@ -5,6 +5,7 @@ using CinemaBookingSystem.Data;
 using System.Linq;
 using CinemaBookingSystem.Models.CinemaViewModel;
 using System.Collections.Generic;
+using CinemaBookingSystem.Models;
 
 namespace CinemaBookingSystem.Controllers
 {
@@ -79,6 +80,46 @@ namespace CinemaBookingSystem.Controllers
             }
 
             return View(screening);
+        }
+
+        //POST: Screenings/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("BookedSeats")] Screening screening)
+        {
+            if (id != screening.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(screening);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ScreeningExists(screening.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(screening);
+        }
+
+        private bool ScreeningExists(int id)
+        {
+            return _context.Screenings.Any(e => e.Id == id);
         }
 
         // GET: Screenings/Create
