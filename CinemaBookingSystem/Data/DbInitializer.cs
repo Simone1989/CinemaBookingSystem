@@ -37,7 +37,7 @@ namespace CinemaBookingSystem.Data
                 {
                     Title = "Bill & Ted's Excellent Adventure",
                     Time = DateTime.Parse("2018-03-03 20:30:00"),
-                    BookedTickets = 100,
+                    BookedTickets = 99,
                     Description = "Two seemingly dumb teens set off on a quest to prepare the ultimate historical presentation with the help of a time machine.",
                     Auditorium = audi2,
                     ImageUrl = "/images/BillTed.jpg"
@@ -73,7 +73,7 @@ namespace CinemaBookingSystem.Data
                 {
                     Title = "Donnie Darko",
                     Time = DateTime.Parse("2018-03-03 18:45:00"),
-                    BookedTickets = 50,
+                    BookedTickets = 45,
                     Description = "A troubled teenager is plagued by visions of a man in a large rabbit suit who manipulates him to commit a series of crimes, after he narrowly escapes a bizarre accident.",
                     Auditorium = audi1,
                     ImageUrl = "/images/DonnieDarko.jpg"

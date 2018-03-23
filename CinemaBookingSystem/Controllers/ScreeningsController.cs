@@ -109,8 +109,17 @@ namespace CinemaBookingSystem.Controllers
 
             if(screening != null)
             {
-                screening.BookedTickets = screening.BookedTickets + numberOfTickets;
-                _context.SaveChanges();
+                var totalTickets = screening.BookedTickets = screening.BookedTickets + numberOfTickets;
+
+                if(totalTickets > screening.Auditorium.NumberOfSeats || numberOfTickets > 12 || numberOfTickets < 1)
+                {
+                    // returnera nått annat här
+                    return NotFound();
+                }
+                else
+                {
+                    _context.SaveChanges();
+                }
             }
             else
             {
