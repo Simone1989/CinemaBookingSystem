@@ -28,7 +28,7 @@ namespace CinemaBookingSystem.Data
                 {
                     Title = "Lord of the Rings: Fellowship of the Ring",
                     Time = DateTime.Parse("2018-03-03 21:00:00"),
-                    BookedSeats = 34,
+                    BookedTickets = 34,
                     Description = "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
                     Auditorium =  audi1,
                     ImageUrl = "/images/LotR.jpg"
@@ -37,7 +37,7 @@ namespace CinemaBookingSystem.Data
                 {
                     Title = "Bill & Ted's Excellent Adventure",
                     Time = DateTime.Parse("2018-03-03 20:30:00"),
-                    BookedSeats = 100,
+                    BookedTickets = 100,
                     Description = "Two seemingly dumb teens set off on a quest to prepare the ultimate historical presentation with the help of a time machine.",
                     Auditorium = audi2,
                     ImageUrl = "/images/BillTed.jpg"
@@ -46,7 +46,7 @@ namespace CinemaBookingSystem.Data
                 {
                     Title = "Mad Max: Fury Road",
                     Time = DateTime.Parse("2018-03-03 19:00:00"),
-                    BookedSeats = 22,
+                    BookedTickets = 22,
                     Description = "A woman rebels against a tyrannical ruler in postapocalyptic Australia in search for her home-land with the help of a group of female prisoners, a psychotic worshipper, and a drifter named Max.",
                     Auditorium = audi1,
                     ImageUrl = "/images/MadMax.jpg"
@@ -55,7 +55,7 @@ namespace CinemaBookingSystem.Data
                 {
                     Title = "Dark City",
                     Time = DateTime.Parse("2018-03-03 22:30:00"),
-                    BookedSeats = 4,
+                    BookedTickets = 4,
                     Description = "A man struggles with memories of his past, including a wife he cannot remember, in a nightmarish world with no sun.",
                     Auditorium = audi2,
                     ImageUrl = "/images/DarkCity.jpg"
@@ -64,7 +64,7 @@ namespace CinemaBookingSystem.Data
                 {
                     Title = "Inception",
                     Time = DateTime.Parse("2018-03-03 12:00:00"),
-                    BookedSeats = 80,
+                    BookedTickets = 80,
                     Description = "A thief, who steals corporate secrets through the use of dream-sharing technology, is given the inverse task of planting an idea into the mind of a CEO.",
                     Auditorium = audi2,
                     ImageUrl = "/images/Inception.jpg"
@@ -73,7 +73,7 @@ namespace CinemaBookingSystem.Data
                 {
                     Title = "Donnie Darko",
                     Time = DateTime.Parse("2018-03-03 18:45:00"),
-                    BookedSeats = 50,
+                    BookedTickets = 50,
                     Description = "A troubled teenager is plagued by visions of a man in a large rabbit suit who manipulates him to commit a series of crimes, after he narrowly escapes a bizarre accident.",
                     Auditorium = audi1,
                     ImageUrl = "/images/DonnieDarko.jpg"

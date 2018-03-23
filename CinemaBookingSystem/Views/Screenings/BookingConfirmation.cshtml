@@ -1,8 +1,48 @@
-﻿@model IEnumerable<CinemaBookingSystem.Models.Screening>
+﻿@model CinemaBookingSystem.Models.Screening
 
 @{
-    ViewData["Title"] = "BookingConfirmation";
+	ViewData["Title"] = "Booking Confirmation";
 }
 
-<h2>BookingConfirmation</h2>
+<h2>Booking Confirmation</h2>
 
+<div class="details">
+	<div class="bookTicketImg">
+		<img src="@Html.DisplayFor(model => @model.ImageUrl)" />
+	</div>
+	<div class="detailsText">
+		<dl>
+			<dt>
+				@Html.DisplayNameFor(model => model.Title)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Title)
+			</dd>
+			<dt>
+				@Html.DisplayNameFor(model => model.Time)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Time)
+			</dd>
+			<dt>
+				@Html.DisplayNameFor(model => model.Auditorium)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Auditorium.Name)
+			</dd>
+			<dt>
+				Number of tickets
+			</dt>
+			<dd>
+				SKICKA MED TICKETS HÄR
+			</dd>
+		</dl>
+		<hr />
+		<h3>Enjoy your movie!</h3>
+	</div>
+</div>
+
+<hr />
+<div class="detailsLinks">
+	<a asp-action="Index">Back to Movies</a>
+</div>

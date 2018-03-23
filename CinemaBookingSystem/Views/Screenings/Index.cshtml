@@ -28,9 +28,8 @@
 
 		@foreach (var item in Model)
 		{
-			// var seatsLeft = item.Auditorium.NumberOfSeats - item.BookedSeats;
 
-			if (item.BookedSeats >= item.Auditorium.NumberOfSeats)
+			if (item.BookedTickets >= item.Auditorium.NumberOfSeats)
 			{
 				<tr class="danger">
 					<td class="smallImage">
@@ -46,7 +45,7 @@
 						@Html.DisplayFor(modelItem => item.Auditorium.Name)
 					</td>
 					<td>
-						@Html.DisplayFor(modelItem => item.BookedSeats) / @Html.DisplayFor(modelItem => item.Auditorium.NumberOfSeats)
+						@Html.DisplayFor(modelItem => item.BookedTickets) / @Html.DisplayFor(modelItem => item.Auditorium.NumberOfSeats)
 					</td>
 					<td>
 						Buy tickets
@@ -69,7 +68,7 @@
 						@Html.DisplayFor(modelItem => item.Auditorium.Name)
 					</td>
 					<td>
-						@Html.DisplayFor(modelItem => item.BookedSeats) / @Html.DisplayFor(modelItem => item.Auditorium.NumberOfSeats)
+						@Html.DisplayFor(modelItem => item.BookedTickets) / @Html.DisplayFor(modelItem => item.Auditorium.NumberOfSeats)
 
 					</td>
 					<td>

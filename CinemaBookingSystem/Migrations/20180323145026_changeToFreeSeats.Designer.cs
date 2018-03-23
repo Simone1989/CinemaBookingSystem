@@ -11,9 +11,10 @@ using System;
 namespace CinemaBookingSystem.Migrations
 {
     [DbContext(typeof(CinemaContext))]
-    partial class CinemaContextModelSnapshot : ModelSnapshot
+    [Migration("20180323145026_changeToFreeSeats")]
+    partial class changeToFreeSeats
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,10 +44,10 @@ namespace CinemaBookingSystem.Migrations
 
                     b.Property<int?>("AuditoriumId");
 
-                    b.Property<int>("BookedTickets");
-
                     b.Property<string>("Description")
                         .HasMaxLength(400);
+
+                    b.Property<int>("FreeSeats");
 
                     b.Property<string>("ImageUrl");
 

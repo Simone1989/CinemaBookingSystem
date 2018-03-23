@@ -21,7 +21,7 @@ namespace CinemaBookingSystem.Models
         [StringLength(400)]
         public string Description { get; set; }
 
-        public int BookedSeats { get; set; }
+        public int BookedTickets { get; set; }
 
         public string ImageUrl { get; set; }
 

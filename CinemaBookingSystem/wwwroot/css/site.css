@@ -41,6 +41,7 @@
 .detailsText {
 	position: relative;
 	left: 20px;
+	margin-right: 20px;
 }
 
 .detailsLinks {
@@ -80,6 +81,7 @@
 		left: 5px;
 		float: left;
 		clear: left;
+		margin-top: 5px;
 	}
 }
 

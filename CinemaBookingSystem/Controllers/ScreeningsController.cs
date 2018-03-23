@@ -40,27 +40,15 @@ namespace CinemaBookingSystem.Controllers
                     screeningSort = screeningSort.OrderByDescending(s => s.Time);
                     break;
                 case "Seats":
-                    screeningSort = screeningSort.OrderBy(s => s.BookedSeats);
+                    screeningSort = screeningSort.OrderBy(s => s.BookedTickets);
                     break;
                 case "seats_desc":
-                    screeningSort = screeningSort.OrderByDescending(s => s.BookedSeats);
+                    screeningSort = screeningSort.OrderByDescending(s => s.BookedTickets);
                     break;
                 default:
                     screeningSort = screeningSort.OrderBy(s => s.Time);
                     break; 
             }
-
-            //ScreeningAuditoriumVM screenVM =  new ScreeningAuditoriumVM();
-            //screenVM.Screenings = _context.Screenings.ToList();
-            //screenVM.Auditoriums = 
-
-            // För att ta med info från både screening och auditorium i listan
-            //var screenings = _context.Screenings
-            //    .Include(s => s.Auditorium)
-            //    .AsNoTracking();
-
-            // Hitta ett sätt att returna både screenings och screeningSort. 
-            /*await screeningSort.AsNoTracking().ToListAsync()*/
             return View(await screeningSort.AsNoTracking().ToListAsync());
         }
 
@@ -73,6 +61,7 @@ namespace CinemaBookingSystem.Controllers
             }
 
             var screening = await _context.Screenings
+                .Include(s => s.Auditorium)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (screening == null)
             {
@@ -82,83 +71,57 @@ namespace CinemaBookingSystem.Controllers
             return View(screening);
         }
 
-        //POST: Screenings/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BookedSeats")] Screening screening)
+        [HttpGet]
+        public async Task<IActionResult> Booking(int? id)
         {
-            if (id != screening.Id)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            var screening = _context.Screenings
+                .Include(s => s.Auditorium)
+                .SingleOrDefaultAsync(m => m.Id == id);
+
+            if (screening == null)
             {
-                try
-                {
-                    _context.Update(screening);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ScreeningExists(screening.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
+            return View(await screening);
+        }
+
+        [HttpPost]
+        // [ValidateAntiForgeryToken]
+        public IActionResult BookingConfirmation(int? id, int numberOfTickets)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var screening = _context.Screenings
+                .Include(s => s.Auditorium)
+                .SingleOrDefault(m => m.Id == id);
+
+            var updateBookedSeats = screening.BookedTickets;
+
+            updateBookedSeats = screening.BookedTickets + numberOfTickets;
+
+            if(screening != null)
+            {
+                screening.BookedTickets = screening.BookedTickets + numberOfTickets;
+                _context.SaveChanges();
+            }
+            else
+            {
+                return NotFound();
+            }
+
             return View(screening);
         }
 
-        private bool ScreeningExists(int id)
-        {
-            return _context.Screenings.Any(e => e.Id == id);
-        }
 
-        // GET: Screenings/Create
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
 
-        // POST: Screenings/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,Title,Time")] Screening screening)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Add(screening);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(screening);
-        //}
-
-        // GET: Screenings/Edit/5
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var screening = await _context.Screenings.SingleOrDefaultAsync(m => m.Id == id);
-        //    if (screening == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(screening);
-        //}
 
         // POST: Screenings/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -193,40 +156,6 @@ namespace CinemaBookingSystem.Controllers
         //        return RedirectToAction(nameof(Index));
         //    }
         //    return View(screening);
-        //}
-
-        //// GET: Screenings/Delete/5
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var screening = await _context.Screenings
-        //        .SingleOrDefaultAsync(m => m.Id == id);
-        //    if (screening == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(screening);
-        //}
-
-        //// POST: Screenings/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    var screening = await _context.Screenings.SingleOrDefaultAsync(m => m.Id == id);
-        //    _context.Screenings.Remove(screening);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
-
-        //private bool ScreeningExists(int id)
-        //{
-        //    return _context.Screenings.Any(e => e.Id == id);
         //}
     }
 }

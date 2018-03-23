@@ -33,17 +33,18 @@
 			</dd>
 		</dl>
 		<div>
-			<p>Choose tickets:</p>
+			<p>Choose number of tickets:</p>
 
-			<form action="BookingConfirmation">
-				<input type="number" name="quantity" min="1" max="12">
-				<input type="submit" value="Buy">
+			<form asp-action="BookingConfirmation" asp-route-id="@Model.Id" asp-controller = "Screenings">
+				<input type="number" name="numberOfTickets" min="1" max="12" value="1"/>
+				<input type="submit" value="Buy tickets"/>
 			</form>
+
 		</div>
 	</div>
 </div>
 
 <hr />
 <div class="detailsLinks">
-    <a asp-action="Index">Back to Movies</a>
+	<a asp-action="Index">Back to Movies</a>
 </div>
