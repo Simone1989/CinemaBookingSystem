@@ -3,9 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CinemaBookingSystem.Data;
 using System.Linq;
-using CinemaBookingSystem.Models.CinemaViewModel;
-using System.Collections.Generic;
-using CinemaBookingSystem.Models;
+using Microsoft.AspNetCore.Routing;
 
 namespace CinemaBookingSystem.Controllers
 {
@@ -18,7 +16,7 @@ namespace CinemaBookingSystem.Controllers
             _context = context;
         }
 
-        // GET: Screenings
+
         public async Task<IActionResult> Index(string sortOrder)
         {
             // Sorterig i screeninglistan
@@ -47,12 +45,12 @@ namespace CinemaBookingSystem.Controllers
                     break;
                 default:
                     screeningSort = screeningSort.OrderBy(s => s.Time);
-                    break; 
+                    break;
             }
             return View(await screeningSort.AsNoTracking().ToListAsync());
         }
 
-        // GET: Screenings/Details/5
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -91,9 +89,13 @@ namespace CinemaBookingSystem.Controllers
         }
 
         [HttpPost]
-        // [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
+        // Får det inte att fungera med async och await här
         public IActionResult BookingConfirmation(int? id, int numberOfTickets)
         {
+
+
+
             if (id == null)
             {
                 return NotFound();
@@ -103,68 +105,54 @@ namespace CinemaBookingSystem.Controllers
                 .Include(s => s.Auditorium)
                 .SingleOrDefault(m => m.Id == id);
 
-            var updateBookedSeats = screening.BookedTickets;
-
-            updateBookedSeats = screening.BookedTickets + numberOfTickets;
-
-            if(screening != null)
+            if (ModelState.IsValid)
             {
                 var totalTickets = screening.BookedTickets = screening.BookedTickets + numberOfTickets;
+                try
+                {
+                    if (totalTickets > screening.Auditorium.NumberOfSeats)
+                    {
+                        ModelState.AddModelError(string.Empty, "You can't book more tickets than there are seats. Tickets left: " + numberOfTickets);
 
-                if(totalTickets > screening.Auditorium.NumberOfSeats || numberOfTickets > 12 || numberOfTickets < 1)
-                {
-                    // returnera nått annat här
-                    return NotFound();
+                        // FIXA RETURNEN 
+                        //return View(screening);
+                        return RedirectToAction("Details", new { id });
+                    }
+                    else if(numberOfTickets > 12)
+                    {
+                        ModelState.AddModelError(string.Empty, "You can't book more than 12 tickets per screening");
+                        return RedirectToAction("Details", new { id });
+                    }
+                    else if(numberOfTickets < 1)
+                    {
+                        ModelState.AddModelError(string.Empty, "You must choose at least 1 ticket.");
+                        return RedirectToAction("Details", new { id });
+                    }
+                    else
+                    {
+                        _context.Update(screening);
+                        _context.SaveChanges();
+                    }
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
-                    _context.SaveChanges();
+                    if (!ScreeningExists(screening.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
-            else
-            {
-                return NotFound();
-            }
-
             return View(screening);
         }
 
 
-
-
-        // POST: Screenings/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Time")] Screening screening)
-        //{
-        //    if (id != screening.Id)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(screening);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!ScreeningExists(screening.Id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(screening);
-        //}
+        private bool ScreeningExists(int id)
+        {
+            return _context.Screenings.Any(e => e.Id == id);
+        }
     }
 }
