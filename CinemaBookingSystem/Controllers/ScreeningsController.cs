@@ -50,7 +50,7 @@ namespace CinemaBookingSystem.Controllers
             return View(await screeningSort.AsNoTracking().ToListAsync());
         }
 
-
+        [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -69,33 +69,30 @@ namespace CinemaBookingSystem.Controllers
             return View(screening);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Booking(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //[HttpGet]
+        //public async Task<IActionResult> Booking(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var screening = _context.Screenings
-                .Include(s => s.Auditorium)
-                .SingleOrDefaultAsync(m => m.Id == id);
+        //    var screening = _context.Screenings
+        //        .Include(s => s.Auditorium)
+        //        .SingleOrDefaultAsync(m => m.Id == id);
 
-            if (screening == null)
-            {
-                return NotFound();
-            }
-            return View(await screening);
-        }
+        //    if (screening == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(await screening);
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         // Får det inte att fungera med async och await här
-        public IActionResult BookingConfirmation(int? id, int numberOfTickets)
+        public IActionResult Details(int? id, int numberOfTickets)
         {
-
-
-
             if (id == null)
             {
                 return NotFound();
@@ -112,21 +109,18 @@ namespace CinemaBookingSystem.Controllers
                 {
                     if (totalTickets > screening.Auditorium.NumberOfSeats)
                     {
-                        ModelState.AddModelError(string.Empty, "You can't book more tickets than there are seats. Tickets left: " + numberOfTickets);
-
-                        // FIXA RETURNEN 
-                        //return View(screening);
-                        return RedirectToAction("Details", new { id });
+                        ModelState.AddModelError(string.Empty, "You can't buy more tickets than there are seats.");
+                        return View(screening);
                     }
                     else if(numberOfTickets > 12)
                     {
-                        ModelState.AddModelError(string.Empty, "You can't book more than 12 tickets per screening");
-                        return RedirectToAction("Details", new { id });
+                        ModelState.AddModelError(string.Empty, "You can't buy more than 12 tickets per screening");
+                        return View(screening);
                     }
                     else if(numberOfTickets < 1)
                     {
                         ModelState.AddModelError(string.Empty, "You must choose at least 1 ticket.");
-                        return RedirectToAction("Details", new { id });
+                        return View(screening);
                     }
                     else
                     {
@@ -145,7 +139,26 @@ namespace CinemaBookingSystem.Controllers
                         throw;
                     }
                 }
+                return RedirectToAction(nameof(BookingConfirmation), new { id });
             }
+            return View(screening);
+        }
+
+        public async Task<IActionResult> BookingConfirmation(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var screening = await _context.Screenings
+                .Include(s => s.Auditorium)
+                .SingleOrDefaultAsync(m => m.Id == id);
+            if (screening == null)
+            {
+                return NotFound();
+            }
+
             return View(screening);
         }
 

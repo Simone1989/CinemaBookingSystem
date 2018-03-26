@@ -50,7 +50,32 @@
 	position: relative;
 	bottom: 280px;
 	left: 550px;
+}
 
+.welcome-header {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-image: url('../images/cinema.jpg');
+	background-position: left;
+	color: #ffd800;
+	border-radius: 20px;
+	font-family: "Limelight";
+	font-size: 50px;
+	padding-left: 200px;
+	padding-right: 200px;
+	padding-top: 50px;
+	padding-bottom: 200px;
+}
+
+.ticket-link {
+	background-color: #4d090a;
+	border-radius: 20px;
+	font-size: 24px;
+	text-align: center;
+	color: #ffd800;
+}
+
+.navcolour {
+	background-color: #4d090a;
 }
 
 

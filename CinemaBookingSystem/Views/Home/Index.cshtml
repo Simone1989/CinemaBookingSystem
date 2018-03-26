@@ -1,14 +1,12 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 }
-<body>
+<body class="welcome-page-body">
 
-	<div class="jumbotron container">
-		<h1>Welcome to Berras Cinema!</h1>
-	</div>
+	<h1 class="welcome-header">Welcome to Berras Cinema!</h1>
 
-	<div>
-		<p>Buy Tickets here</p>
+	<div class="container-fluid ticket-link">
+		<a asp-controller="Screenings" asp-action="Index" class="container-fluid ticket-link">Buy tickets here</a>
 	</div>
 
 </body>

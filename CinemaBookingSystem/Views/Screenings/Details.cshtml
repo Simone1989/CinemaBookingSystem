@@ -6,8 +6,6 @@
 
 <h2>Buy tickets</h2>
 
-@Html.ValidationSummary(true, "", new { @class = "text-danger" });
-
 <div class="details">
 	<div class="bookTicketImg">
 		<img src="@Html.DisplayFor(model => @model.ImageUrl)" />
@@ -37,10 +35,11 @@
 		<div class="form-group">
 			<label for="BookingConfirmation">Choose number of tickets:</label>
 
-			<form asp-action="BookingConfirmation" asp-route-id="@Model.Id" asp-controller="Screenings">
-				<input id="focusedInput" type="number" name="numberOfTickets" min="1" max="12" value="1" />
+			<form asp-action="Details" asp-route-id="@Model.Id" asp-controller="Screenings">
+				<input id="focusedInput" type="number" name="numberOfTickets" value="1" />
 				<input type="submit" value="Buy tickets" class="btn btn-primary" />
 			</form>
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 		</div>
 	</div>
 </div>
