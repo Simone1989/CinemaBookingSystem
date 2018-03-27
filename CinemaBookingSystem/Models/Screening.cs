@@ -25,7 +25,6 @@ namespace CinemaBookingSystem.Models
 
         public string ImageUrl { get; set; }
 
-        // Nav
         public Auditorium Auditorium { get; set; }
     }
 }

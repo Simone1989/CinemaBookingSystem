@@ -69,25 +69,6 @@ namespace CinemaBookingSystem.Controllers
             return View(screening);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Booking(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var screening = _context.Screenings
-        //        .Include(s => s.Auditorium)
-        //        .SingleOrDefaultAsync(m => m.Id == id);
-
-        //    if (screening == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(await screening);
-        //}
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         // Får det inte att fungera med async och await här
